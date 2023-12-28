@@ -65,12 +65,13 @@
     # install
     brew install joshuto
     # config  copy these files(joshuto/config/*) to ~/.config/joshuto/
-    joshuto.toml: basic/general configurations
-    keymap.toml: keymapping configurations
-    mimetype.toml: mimetype configurations
-    theme.toml: theming configurations
-    icons.toml: icons customization
-    preview_file.sh: preview file # make sure it's marked as executable by chmod +x preview_file.sh
+        joshuto.toml: basic/general configuration   -- custom myself
+        keymap.toml: keymapping configurations      -- custom myself
+        mimetype.toml: mimetype configurations
+        theme.toml: theming configurations
+        icons.toml: icons customization            -- changed sh icons to 
+        # make sure it's marked as executable by chmod +x preview_file.sh
+        preview_file.sh: preview file
     # updated config refer to my github
 
 ```
@@ -108,7 +109,6 @@
 ```bash
     # Install
     brew install lazygit
-    # config
+    # use default config
 
 ```
-
