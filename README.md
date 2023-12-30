@@ -4,7 +4,7 @@
 
 #### refer to [modern-unix](https://github.com/ibraheemdev/modern-unix)
 
-- [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
+##### [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
 
 ```bash
     # config Custom key
@@ -16,7 +16,7 @@
     gh: https://github.com/search?q=%s GitHub
 ```
 
-- [bat](https://github.com/sharkdp/bat) -- like cat but with syntax highlighting and Git integration.
+##### [bat](https://github.com/sharkdp/bat) -- like cat but with syntax highlighting and Git integration.
 
 ```bash
     # Install
@@ -29,7 +29,7 @@
     --style="numbers,changes,header,snip,rule"
 ```
 
-- [delta](https://github.com/dandavison/delta) -- A viewer for git and diff output.
+##### [delta](https://github.com/dandavison/delta) -- A viewer for git and diff output.
 
 ```bash
     # Install
@@ -42,10 +42,15 @@
         diffFilter = delta --color-only
     [delta]
         syntax-theme = gruvbox-dark
-        side-by-side = true
+        side-by-side = true     # this config auto set line-numbers=true
+    [merge]
+        conflictstyle = diff3
+    # Using Delta with tmux add to tmux.conf
+    # set -ga terminal-overrides ",xterm-256color:Tc"
+
 ```
 
-- [cheat.sh](https://github.com/chubin/cheat.sh) -- A CLI tool for generating cheatsheets.
+##### [cheat.sh](https://github.com/chubin/cheat.sh) -- A CLI tool for generating cheatsheets.
 
 ```bash
     # Install
@@ -59,7 +64,7 @@
     cht.sh go chan
 ```
 
-- [joshuto](https://github.com/kamiyaa/joshuto) -- a terminal-based file manager by rust
+##### [joshuto](https://github.com/kamiyaa/joshuto) -- a terminal-based file manager by rust
 
 ```bash
     # install
@@ -76,7 +81,7 @@
 
 ```
 
-- [ranger](https://github.com/ranger/ranger) -- slow and often crashes; use joshuto instead
+##### [ranger](https://github.com/ranger/ranger) -- slow and often crashes; use joshuto instead
 
 ```bash
     # Install
@@ -103,12 +108,104 @@
     #set ${VISUAL:-$EDITOR} to ${VISUAL:-nvim}
 ```
 
-- [lazygit](https://github.com/jesseduffield/lazygit) -- Simple terminal UI for git commands
-  [Keybindings_zh](https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Keybindings_zh-CN.md)
+##### [lazygit](https://github.com/jesseduffield/lazygit) -- Simple terminal UI for git commands
+
+refer to [Keybindings_zh](https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Keybindings_zh-CN.md)
 
 ```bash
     # Install
     brew install lazygit
     # use default config
 
+```
+
+##### [tmux](https://github.com/tmux/tmux) -- a terminal multiplexer
+
+Full screenshot
+
+Custom keybindings
+| key | binding | description |
+| :-----: | :----: | :-----: |
+| `Ctrl+Space` | | set **`prefix`** |
+| `prefix` | r | reload config
+
+- install `tmux`
+
+```bash
+    # Install
+    brew install tmux
+    # config
+    mkdir -p ~/.config/tmux
+    touch ~/.config/tmux/tmux.conf
+    # nvim 中使用了c-/ 作为启动toggleterm的快捷键 & c-, c-; 作为启动codeium的快捷键
+    # 如果不做以下配置将无法使用
+        # set 'report modifiers using CSI u' in Iterm2
+        # add to tmux.conf
+        set -s extended-keys on
+        set -as terminal-features 'xterm*:extkeys'
+```
+
+- install `tpm`
+  - `prefix` + `I` to installs new plugins
+  - `prefix` + `U` to update plugins
+  - `prefix` + `alt` + `u` to uninstall/remove
+
+```bash
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    # at the bottom of ~/.config/tmux/tmux.conf
+        # List of plugins
+        set -g @plugin 'tmux-plugins/tpm'
+        set -g @plugin 'tmux-plugins/tmux-sensible'
+        # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+        run '~/.tmux/plugins/tpm/tpm'
+    # type this in terminal if tmux is already running
+    tmux source ~/.config/tmux/tmux.conf
+```
+
+- install `tmux-powerline`
+
+```bash
+    # add to ~/.config/tmux/tmux.confg under tpm
+     set -g @plugin 'erikw/tmux-powerline'
+    tmux source ~/.config/tmux/tmux.conf
+
+```
+
+- config file
+
+```bash
+    ~/.config/tmux/plugins/tmux-powerline/generate_rc.sh
+    mv ~/.config/tmux-powerline/config.sh.default ~/.config/tmux-powerline/config.sh
+    vim ~/.config/tmux-powerline/config.sh
+    # update the config.sh by setting
+    TMUX_POWERLINE_SEG_DATE_FORMAT="%m/%d/%Y"
+```
+
+- config theme
+
+```bash
+    mkdir -p ~/.config/tmux-powerline/themes
+    cp ~/.config/tmux/plugins/tmux-powerline/themes/default.sh ~/.config/tmux-powerline/themes/theme.sh
+    vim ~/.config/tmux-powerline/themes/theme.sh
+    # update the config.sh by setting
+    TMUX_POWERLINE_THEME=theme
+    # update theme.sh
+    TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
+		"tmux_session_info 148 234" \
+		#"hostname 33 0" \
+		"vcs_branch 9 255" \
+		#"vcs_compare 60 255" \
+		#"vcs_staged 64 255" \
+		"vcs_modified 9 255" \
+		#"vcs_others 245 0" \
+	)
+    TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
+		"pwd 89 211" \
+		#"battery 137 127" \
+		"date_day 235 136" \
+		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
+		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
+		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+	)
+    tmux source ~/.config/tmux/tmux.conf
 ```
