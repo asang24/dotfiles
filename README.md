@@ -122,12 +122,25 @@ refer to [Keybindings_zh](https://github.com/jesseduffield/lazygit/blob/master/d
 ##### [tmux](https://github.com/tmux/tmux) -- a terminal multiplexer
 
 Full screenshot
+<img src="https://github.com/asang24/dotfiles/blob/main/tmux-powerline/Screenshot.png" alt="screenshot" style="zoom:100%;" />
 
 Custom keybindings
-| key | binding | description |
-| :-----: | :----: | :-----: |
-| `Ctrl+Space` | | set **`prefix`** |
-| `prefix` | r | reload config
+refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
+
+|     key      | binding |        description        |
+| :----------: | :-----: | :-----------------------: |
+| `Ctrl+Space` |         |     set **`prefix`**      |
+|   `prefix`   |    r    |       reload config       |
+|   `prefix`   |    ,    |       rename window       |
+|   `prefix`   |    q    |        kill window        |
+|   `prefix`   |    j    |  split window vertically  |
+|   `prefix`   |    k    | split window horizontally |
+|   `Shift`    |  Left   |      previous window      |
+|   `Shift`    |  Right  |        next window        |
+|   `Option`   |  Left   |          pane -L          |
+|   `Option`   |  Right  |      select pane -R       |
+|   `Option`   |   Up    |      select pane -U       |
+|   `Option`   |  Down   |      select pane -D       |
 
 - install `tmux`
 
