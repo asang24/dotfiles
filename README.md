@@ -142,6 +142,11 @@ other keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 |   `Option`   |  Right  |      select pane -R       |
 |   `Option`   |   Up    |      select pane -U       |
 |   `Option`   |  Down   |      select pane -D       |
+|   `prefix`   |    H    |     resize pane -L 5      |
+|   `prefix`   |    J    |     resize-pane -D 5      |
+|   `prefix`   |    K    |     resize-pane -U 5      |
+|   `prefix`   |    L    |     resize-pane -R 5      |
+|   `prefix`   |    m    |    zoom & unzoom panes    |
 
 - install `tmux`
 
